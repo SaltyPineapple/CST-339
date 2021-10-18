@@ -36,7 +36,7 @@ public class RegistrationController {
 
         // dependency injection method
         if(registerService.register(registerModel.getFirstName(), registerModel.getLastName(), registerModel.getUsername(), registerModel.getPassword(), registerModel.getPasswordRepeat())){
-            System.out.printf("Successfully Registerred, Username of: %s", registerModel.getUsername());
+            System.out.printf("Successfully Registered, Username of: %s", registerModel.getUsername());
             return "home";    
         }
         return "register";
