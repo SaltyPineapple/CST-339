@@ -1,23 +1,24 @@
 package com.gcu.models;
 
+import javax.validation.constraints.NotNull;
+
 public class BlogPostModel {
     
+    @NotNull(message="Title is required")
     private String title;
-    private String post;
-    private String timestamp;
 
-    public BlogPostModel(String title, String post, String timestamp){
-        this.title = title;
-        this.post = post;
-        this.timestamp = timestamp;
-    }
+    @NotNull(message="Post cannot be blank")
+    private String post;
+    
+    private String timestamp;
+    
 
     public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String postTitle) {
+        this.title = postTitle;
     }
 
     public String getPost() {

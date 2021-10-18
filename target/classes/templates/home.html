@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
 
     </head>
     <body>
         <h1>welcome!</h1>
+        <table title="Blog Posts">
+            <tr>
+                <th>User</th>
+                <th>Title</th>
+                <th>Post</th>
+            </tr>
+            <tr>
+
+            </tr>
+        </table>
+        <a th:href="@{/post/}">Create New Post</a>
     </body>
 </html>

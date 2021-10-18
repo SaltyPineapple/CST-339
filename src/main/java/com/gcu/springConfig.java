@@ -2,6 +2,8 @@ package com.gcu;
 
 import com.gcu.business.LoginBusinessService;
 import com.gcu.business.LoginInterface;
+import com.gcu.business.PostBusinessService;
+import com.gcu.business.PostInterface;
 import com.gcu.business.RegistrationBusinessService;
 import com.gcu.business.RegistrationInterface;
 
@@ -19,5 +21,10 @@ public class springConfig {
     @Bean(name="registerService")
     public RegistrationInterface getRegister(){
         return new RegistrationBusinessService();
+    }
+
+    @Bean(name="postService")
+    public PostInterface getPost(){
+        return new PostBusinessService();
     }
 }
