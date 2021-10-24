@@ -5,15 +5,24 @@
     </head>
     <body>
         <h1>welcome!</h1>
-        <table title="Blog Posts">
-            <tr>
-                <th>User</th>
-                <th>Title</th>
-                <th>Post</th>
-            </tr>
-            <tr>
-
-            </tr>
+        <table title="Blog Posts" style="width: 50%;">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Post</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${posts.empty}">
+                    <td style="text-align: center;" colspan="4">No Posts available</td>
+                </tr>
+                <tr th:each="post : ${posts}">
+                    <td><h5 th:text="${post.title}">1</h5></td>
+                    <td><h5 th:text="${post.post}">1</h5></td>
+                    <td><h5 th:text="${post.timestamp}">1</h5></td>
+                </tr>
+            </tbody>
         </table>
         <a th:href="@{/post/}">Create New Post</a>
     </body>

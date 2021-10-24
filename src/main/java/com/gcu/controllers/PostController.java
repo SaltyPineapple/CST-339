@@ -20,6 +20,7 @@ public class PostController {
     @Autowired
     private PostInterface postService;
 
+
     @GetMapping("/")
     public String display(Model model){
         model.addAttribute("title", "Post Form");
@@ -38,7 +39,7 @@ public class PostController {
 
         if(postService.createBlogPost(post.getTitle(), post.getPost())){
             System.out.println(String.format("Post created with title of %s", post.getTitle()));
-        
+            model.addAttribute("posts", postService.findAll());
             return "home";
         }
         return "createPost";

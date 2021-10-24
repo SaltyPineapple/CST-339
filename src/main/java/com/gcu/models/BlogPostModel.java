@@ -11,6 +11,17 @@ public class BlogPostModel {
     private String post;
     
     private String timestamp;
+
+    public BlogPostModel(String title, String post, String timestamp){
+        this.title = title;
+        this.post = post;
+        this.timestamp = timestamp;
+    }
+
+    public BlogPostModel(){
+        
+    }
+
     
 
     public String getTitle() {

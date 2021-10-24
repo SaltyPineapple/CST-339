@@ -1,12 +1,17 @@
 package com.gcu.business;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.gcu.models.BlogPostModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -39,6 +44,26 @@ public class PostSecurityService {
         System.out.println("======================");
         return false;
 
+    }
+
+    public List<BlogPostModel> findAll(){
+        String sql = "Select * FROM blogpost";
+        List<BlogPostModel> posts = new ArrayList<>();
+        try{
+            SqlRowSet srs = jdbcTemplate.queryForRowSet(sql);
+            while(srs.next()){
+                posts.add(new BlogPostModel(srs.getString("title"),
+                                            srs.getString("post"),
+                                            srs.getString("timestamp")));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    
+
+        return posts;
+        
     }
     
 }

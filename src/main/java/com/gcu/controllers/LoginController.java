@@ -3,6 +3,7 @@ package com.gcu.controllers;
 import javax.validation.Valid;
 
 import com.gcu.business.LoginInterface;
+import com.gcu.business.PostInterface;
 import com.gcu.models.LoginModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class LoginController {
 
     @Autowired
     private LoginInterface loginService;
+
+    @Autowired PostInterface postService;
     
     @GetMapping("/")
     public String display(Model model){
@@ -38,7 +41,7 @@ public class LoginController {
 
         if(loginService.login(loginModel.getUsername(), loginModel.getPassword())){
             System.out.println(String.format("Form with Username of %s and Password of %s", loginModel.getUsername(), loginModel.getPassword()));
-        
+            model.addAttribute("posts", postService.findAll());
             return "home";
         }
         return "login";
