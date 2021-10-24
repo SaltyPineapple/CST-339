@@ -45,4 +45,11 @@ public class PostController {
         return "createPost";
         
     }
+
+    @GetMapping("/delete")
+    public String delete(BlogPostModel post, Model model){
+        postService.deletePost(post.getID());
+        model.addAttribute("posts", postService.findAll());
+        return "home";
+    }
 }

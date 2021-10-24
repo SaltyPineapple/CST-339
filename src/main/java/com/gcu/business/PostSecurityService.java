@@ -52,7 +52,8 @@ public class PostSecurityService {
         try{
             SqlRowSet srs = jdbcTemplate.queryForRowSet(sql);
             while(srs.next()){
-                posts.add(new BlogPostModel(srs.getString("title"),
+                posts.add(new BlogPostModel(srs.getInt("ID"),
+                                            srs.getString("title"),
                                             srs.getString("post"),
                                             srs.getString("timestamp")));
             }
@@ -64,6 +65,44 @@ public class PostSecurityService {
 
         return posts;
         
+    }
+    
+    public BlogPostModel findByID(int id){
+        String sql = String.format("Select * FROM blogpost where ID = %s",id);
+        BlogPostModel post = new BlogPostModel();
+        try{
+            SqlRowSet srs = jdbcTemplate.queryForRowSet(sql);
+            while(srs.next()){
+                post.setID(srs.getInt("ID"));
+                post.setTitle(srs.getString("title"));
+                post.setPost(srs.getString("post"));
+                post.setTimestamp(srs.getString("timestamp"));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    
+
+        return post;
+    }
+
+    public boolean deletePost(int id){
+        String sql = "DELETE from blogpost where ID = ?";
+        try{
+            jdbcTemplate.update(sql, id);
+            System.out.println("\n======================");
+        System.out.println("Post Deleted ...");
+        System.out.println("======================");
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println("\n======================");
+            System.out.println("Post Delete Failure...");
+            System.out.println("======================");
+            return false;
+        }
     }
     
 }

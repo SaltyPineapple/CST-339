@@ -21,5 +21,15 @@ public class PostBusinessService implements PostInterface {
     public List<BlogPostModel> findAll() {
         return service.findAll();
     }
+
+    @Override
+    public BlogPostModel findByID(int id){
+        return service.findByID(id);
+    }
+
+    @Override
+    public boolean deletePost(int id){
+        return service.deletePost(id);
+    }
     
 }

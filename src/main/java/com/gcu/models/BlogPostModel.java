@@ -3,6 +3,9 @@ package com.gcu.models;
 import javax.validation.constraints.NotNull;
 
 public class BlogPostModel {
+
+    private int ID;
+
     
     @NotNull(message="Title is required")
     private String title;
@@ -11,18 +14,26 @@ public class BlogPostModel {
     private String post;
     
     private String timestamp;
-
-    public BlogPostModel(String title, String post, String timestamp){
+    
+    public BlogPostModel(int id, String title, String post, String timestamp){
+        this.ID = id;
         this.title = title;
         this.post = post;
         this.timestamp = timestamp;
     }
-
+    
     public BlogPostModel(){
         
     }
-
     
+    
+    public int getID() {
+        return this.ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    };
 
     public String getTitle() {
         return this.title;
