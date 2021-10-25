@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+
+    </head>
+    <body>
+        <h1>welcome!</h1>
+        <table title="Blog Posts" style="width: 50%;">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Post</th>
+                    <th>Time</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${posts.empty}">
+                    <td style="text-align: center;" colspan="4">No Posts available</td>
+                </tr>
+                <tr th:each="post : ${posts}">
+                    <td><h5 th:text="${post.title}">1</h5></td>
+                    <td><h5 th:text="${post.post}">1</h5></td>
+                    <td><h5 th:text="${post.timestamp}">1</h5></td>
+                    <td><a th:href="@{/post/edit}">edit Post</a></td>
+                    <td>
+                        <form action="#" th:action="@{delete}" th:object="${postModel}" method="GET">
+                            <!-- <p th:field="{id}"></p> -->
+                            <input type="submit" value="Delete">
+                        </form>    
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/post/}">Create New Post</a>
+    </body>
+</html>
