@@ -22,10 +22,16 @@ public class PostController {
 
 
     @GetMapping("/")
-    public String display(Model model){
+    public String displayPost(Model model){
         model.addAttribute("title", "Post Form");
         model.addAttribute("postModel", new BlogPostModel());
         return "createPost";
+    }
+
+    @GetMapping("/all")
+    public String display(Model model){
+        model.addAttribute("posts", postService.findAll());
+        return "home";
     }
     
     @PostMapping("/doPost")
