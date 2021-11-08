@@ -1,4 +1,4 @@
-package data;
+package com.gcu.data;
 
 import java.util.List;
 
